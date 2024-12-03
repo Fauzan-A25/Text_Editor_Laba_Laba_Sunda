@@ -1,9 +1,7 @@
-#include <iostream>
+#include "header.h"
 
-using namespace std;
-
-int main()
-{
-    cout << "Hello world!" << endl;
+int main() {
+    MLL Memory;
+    printmenu(Memory);
     return 0;
 }

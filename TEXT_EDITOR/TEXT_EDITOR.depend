@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1733262270 source:d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\main.cpp
+	"header.h"
+
+1733265319 source:d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\inputvariabletext.cpp
+	"header.h"
+
+1733265102 d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\header.h
+	<iostream>
+	<conio.h>
+	<string>
+	<sstream>
+
+1733265241 source:d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\source.cpp
+	"header.h"
+

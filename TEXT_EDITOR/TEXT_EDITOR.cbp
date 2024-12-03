@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="InputVariableText.cpp" />
 		<Unit filename="header.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="source.cpp" />
