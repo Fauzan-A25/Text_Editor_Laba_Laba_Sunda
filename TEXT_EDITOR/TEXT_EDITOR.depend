@@ -2,16 +2,15 @@
 1734031427 source:d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\main.cpp
 	"header.h"
 
-1734080881 source:d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\inputvariabletext.cpp
+1734596405 source:d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\inputvariabletext.cpp
 	"header.h"
 
-1734072785 d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\header.h
+1734598772 d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\header.h
 	<iostream>
 	<conio.h>
 	<string>
-	<sstream>
 	<windows.h>
 
-1734081693 source:d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\source.cpp
+1734597807 source:d:\telkom\matkul semester 3\struktur data ds-47-03 [sll]\tugas\tubes\text_editor\source.cpp
 	"header.h"
 

@@ -142,10 +142,19 @@ void removeMemoryBlock(MLL &Node, AdrMemoryBlock &Cursor, AdrMemoryBlock &temp) 
 }
 
 
-void printListContent(listContent Data, AdrContent cursor_pos)
+void printListContent(listContent Data, AdrContent cursor_pos, string namaFile)
 {
     system("cls");
+    cout << "+--------------------------------------------------+" << endl;
+    cout << "|             Notepadd Laba-Laba Sunda             |" << endl;
+    cout << "+--------------------------------------------------+" << endl;
+    cout << namaFile << endl;
+    cout << "+--------------------------------------------------+" << endl;
+
     AdrContent temp = Data.First->next;
+    if (cursor_pos == Data.First) {
+        cout << "|";
+    }
     while (temp != nullptr)
     {
         cout << temp->info;
@@ -202,7 +211,7 @@ void printmenu(MLL &Data, listContent &temp) {
             } else if (ch == 27) {
                 running = false;
             } else if (ch == '\r' && Data.First != nullptr) {
-                editInput(Cursor->Data, temp);
+                editInput(Cursor->Data, temp, Cursor->Name);
                 printMemoryBlock(Data, Cursor);
             }
         }
@@ -211,99 +220,52 @@ void printmenu(MLL &Data, listContent &temp) {
 
 
 void printMemoryBlock(MLL Data, AdrMemoryBlock Cursor) {
-    ostringstream buffer; // Buffer untuk mencetak menu
+    // Bersihkan layar
+    system("cls");
+
     AdrMemoryBlock P = Data.First;
+
+    // Header
     if (Data.First == nullptr) {
-        buffer << "=========================================\n";
-        buffer << "|     FILE KOSONG - SILAHKAN TAMBAH     |\n";
-        buffer << "-----------------------------------------\n";
+        cout << "=========================================\n";
+        cout << "|     FILE KOSONG - SILAHKAN TAMBAH     |\n";
+        cout << "-----------------------------------------\n";
     } else {
-        buffer << "================================\n";
-        buffer << "\u25B6 DATA FILE YANG TERSEDIA \u25B6\n";
-        buffer << "--------------------------------\n";
+        cout << "================================\n";
+        cout << "\u25B6 DATA FILE YANG TERSEDIA \u25B6\n";
+        cout << "--------------------------------\n";
     }
 
+    // Daftar file
     while (P != nullptr) {
         if (P == Cursor) {
-            buffer << "-> ";
+            cout << "-> "; // Penanda posisi cursor
         } else {
-            buffer << "-  ";
+            cout << "-  ";
         }
-        buffer << P->Name << "\n";
+        cout << P->Name << "\n";
         P = P->next;
     }
 
-    buffer << "\n================================\n";
-    buffer << "       TEKAN PILIHAN ANDA \n";
-    buffer << "--------------------------------\n";
-    buffer << "[ESC]   : Keluar dari program\n";
-    buffer << "[1]     : Menambahkan file\n";
+    // Footer
+    cout << "\n================================\n";
+    cout << "       TEKAN PILIHAN ANDA       \n";
+    cout << "--------------------------------\n";
+    cout << "[ESC]   : Keluar dari program\n";
+    cout << "[1]     : Menambahkan file\n";
     if (Data.First != nullptr) {
-        buffer << "[2]     : Menghapus file\n";
+        cout << "[2]     : Menghapus file\n";
+        cout << "[ENTER] : Masuk ke dalam file\n";
     }
-    if (Data.First != nullptr) {
-        buffer << "[ENTER] : Masuk ke dalam file\n";
-    }
-    buffer << "--------------------------------\n";
-
-    // Cetak isi buffer sekaligus
-    system("cls");
-    cout << buffer.str();
+    cout << "--------------------------------\n";
 }
+
 
 /** void dummy(MLL &Data) {
     listContent item = createListContent();
     AdrMemoryBlock P = createMemoryBlock(item, "File 1");
 
 } **/
-
-// Fungsi untuk membuat input dengan tampilan menarik
-void interactiveInputMemoryBlock(string &result) {
-    char ch;
-    int cursorPos = 0;          // Posisi kursor dalam string
-    int maxLength = 30;         // Panjang maksimal input
-
-    // Input manual dengan efek kursor
-    while (true) {
-        // Bersihkan layar bagian input
-        cout << "\r> "; // Awal baris input
-        cout << result; // Tampilkan hasil input
-        for (int i = result.length(); i < maxLength; i++) {
-            cout << "_"; // Placeholder untuk karakter kosong
-        }
-
-        // Tampilkan kursor di posisi yang sesuai
-        cout << "\r> "; // Kembalikan kursor ke awal
-        for (int i = 0; i < cursorPos; i++) {
-            cout << (i < result.length() ? result[i] : '_');
-        }
-
-        cout.flush(); // Pastikan output langsung terlihat
-
-        ch = _getch(); // Membaca karakter tanpa Enter
-
-        // Deteksi tombol panah
-        if (ch == 0 || ch == 0xE0) { // Tombol spesial seperti panah
-            ch = _getch();           // Baca karakter berikutnya
-            if (ch == 0x4B && cursorPos > 0) {        // Panah Kiri
-                cursorPos--;
-            } else if (ch == 0x4D && cursorPos < result.length()) { // Panah Kanan
-                cursorPos++;
-            }
-        } else if (ch == '\r') { // Jika Enter ditekan
-            break;
-        } else if (ch == '\b') { // Jika Backspace ditekan
-            if (cursorPos > 0) {
-                result.erase(cursorPos - 1, 1); // Hapus karakter sebelum kursor
-                cursorPos--;
-            }
-        } else if (result.length() < maxLength) { // Batas panjang input
-            result.insert(cursorPos, 1, ch); // Sisipkan karakter pada posisi kursor
-            cursorPos++;
-        }
-    }
-    cout << endl; // Pindah ke baris berikutnya setelah input selesai
-}
 
 void input_memoryBlock(MLL &Data) {
     system("cls");
@@ -313,7 +275,7 @@ void input_memoryBlock(MLL &Data) {
     cout << "|   Silakan Masukkan Nama File Anda   |\n";
     cout << "-------------------------------------\n";
     cout << "> ";
-    interactiveInputMemoryBlock(Nama);
+    getline(cin, Nama);
     AdrMemoryBlock P = createMemoryBlock(item,Nama);
     addMemoryBlock(Data,P);
 }
@@ -339,6 +301,7 @@ bool isEmpty(Stack S) {
     return S.top == nullptr;
 }
 
+
 void save(string fungsi, AdrContent Data, AdrContent Cursor, listContent temp, Stack &S) {
     infotype P;
     P.data = Data;
@@ -350,61 +313,60 @@ void save(string fungsi, AdrContent Data, AdrContent Cursor, listContent temp, S
 
 void undo(listContent &Data, AdrContent &Cursor, listContent &temp, Stack &U, Stack &R) {
     infotype P;
-    pop(U,P);
-    if (P.Cursor == Cursor) {
-        if (P.fungsi == "Add") {
-            removeContent(Data, Cursor, P.data);
-            save("Add", P.data, Cursor, temp, R);
-        }else if (P.fungsi == "Remove") {
-            addContent(Data, Cursor, P.data);
-            save("Remove", P.data, Cursor, temp, R);
-        }else if (P.fungsi == "RemoveBlock") {
+    pop(U, P); // Mengambil data terakhir dari stack undo
+    Cursor = P.Cursor; // Mengembalikan posisi cursor
 
-        }else if (P.fungsi == "AddBlock") {
-
-        }
-    }else if (P.Cursor != nullptr) {
-        if (P.fungsi == "Add") {
-            removeContent(Data, P.Cursor, P.data);
-            save("Add", P.data, P.Cursor, temp, R);
-        }else if (P.fungsi == "Remove") {
-            addContent(Data, P.Cursor, P.data);
-            save("Remove", P.data, P.Cursor, temp, R);
-        }else if (P.fungsi == "RemoveBlock") {
-
-        }else if (P.fungsi == "AddBlock") {
-
-        }
+    if (P.fungsi == "Add") {
+        removeContent(Data, Cursor, P.data);
+        save("Add", P.data, Cursor, temp, R);
+    }
+    else if (P.fungsi == "Remove") {
+        addContent(Data, Cursor, P.data);
+        save("Remove", P.data, Cursor, temp, R);
+    }
+    else if (P.fungsi == "RemoveBlock") {
+        AdrContent Sementara = Cursor;
+        pasteContent(Data, P.temp, Cursor);
+        save("RemoveBlock", nullptr, Sementara, P.temp, R);
+    }
+    else if (P.fungsi == "AddBlock") {
+        removeBlock(Data, P.temp, Cursor, P.temp.Last);
+        save("AddBlock", nullptr, Cursor, P.temp, R);
+    }
+    else if (P.fungsi == "Replace") {
+        removeBlock(Data, P.temp, Cursor, P.temp.Last);
+        save("Replace", nullptr, Cursor, P.temp, R);
+        pop(U, P);
+        P.Cursor = Cursor;
+        pasteContent(Data, P.temp, Cursor);
+        save("Replace", nullptr, P.Cursor, P.temp, R);
     }
 }
 
 void redo(listContent &Data, AdrContent &Cursor, listContent &temp, Stack &U, Stack &R) {
     infotype P;
     pop(R,P);
-    if (P.Cursor == Cursor) {
-        if (P.fungsi == "Remove") {
-            removeContent(Data, Cursor, P.data);
-            save("Remove", P.data, Cursor, temp, U);
-        }else if (P.fungsi == "Add") {
-            addContent(Data, Cursor, P.data);
-            save("Add", P.data, Cursor, temp, U);
-        }else if (P.fungsi == "RemoveBlock") {
-
-        }else if (P.fungsi == "AddBlock") {
-
-        }
-    }else if (P.Cursor != nullptr) {
-        if (P.fungsi == "Remove") {
-            removeContent(Data, P.Cursor, P.data);
-            save("Remove", P.data, P.Cursor, temp, U);
-        }else if (P.fungsi == "Add") {
-            addContent(Data, P.Cursor, P.data);
-            save("Add", P.data, P.Cursor, temp, U);
-        }else if (P.fungsi == "RemoveBlock") {
-
-        }else if (P.fungsi == "AddBlock") {
-            pasteContent(Data, P.temp, Cursor);
-        }
+    Cursor = P.Cursor;
+    if (P.fungsi == "Remove") {
+        removeContent(Data, Cursor, P.data);
+        save("Remove", P.data, Cursor, temp, U);
+    }else if (P.fungsi == "Add") {
+        addContent(Data, Cursor, P.data);
+        save("Add", P.data, Cursor, temp, U);
+    }else if (P.fungsi == "RemoveBlock") {
+        removeBlock(Data, P.temp, Cursor, P.temp.Last);
+        save("RemoveBlock", nullptr, Cursor, P.temp, U);
+    }else if (P.fungsi == "AddBlock") {
+        AdrContent Sementara = Cursor;
+        pasteContent(Data, P.temp, Cursor);
+        save("AddBlock", nullptr, Sementara, P.temp, U);
+    }else if (P.fungsi == "Replace") {
+        removeBlock(Data, P.temp, Cursor, P.temp.Last);
+        save("Replace", nullptr, Cursor, P.temp, U);
+        pop(R, P);
+        P.Cursor = Cursor;
+        pasteContent(Data, P.temp, Cursor);
+        save("Replace", nullptr, P.Cursor, P.temp, U);
     }
 }
 
@@ -487,38 +449,32 @@ void MoveCursorToUp(listContent Data, AdrContent &Cursor) {
 }
 
 void removeBlock(listContent &Data, listContent &temp, AdrContent &Cursor, AdrContent Batas) {
+    AdrContent sementara = Cursor->next->prev;
     AdrContent start = Cursor->next; // Awal blok yang dihapus
     AdrContent end = Batas;   // Akhir blok yang dihapus (sebelum Batas)
 
     // Hubungkan `Cursor` ke elemen setelah `Batas`
     if (Batas->next != nullptr) {
-        Batas->next->prev = Cursor;
+        Batas->next->prev = Cursor->next->prev;
         Cursor->next = Batas->next;
     } else {
-        Cursor->next = nullptr;
-        Data.Last = Cursor;
+        Data.Last = Cursor->next->prev;
+        Cursor->next->prev->next = nullptr;
     }
 
     // Pisahkan blok dari `Data`
     start->prev = nullptr;
     end->next = nullptr;
 
-    // Tambahkan blok ke `temp`
-    if (temp.First == nullptr) {
-        // Jika `temp` kosong, inisialisasi
-        temp.First = start;
-        temp.Last = end;
-    } else {
-        // Jika `temp` tidak kosong, tambahkan di akhir
-        temp.Last->next = start;
-        start->prev = temp.Last;
-        temp.Last = end;
-    }
+    temp = createListContent();
+    temp.Last->next = start;
+    start->prev = temp.Last;
+    temp.Last = end;
+    Cursor = sementara;
 }
 
 
-
-void block(listContent &Data, listContent &temp, listContent &simpanremove, AdrContent &Cursor, Stack &U) {
+void block(listContent &Data, listContent &temp, AdrContent &Cursor, Stack &U, Stack &R, string namaFile) {
     AdrContent Cursor_Left = nullptr;
     AdrContent Cursor_Right = nullptr;
     char ch;
@@ -533,9 +489,9 @@ void block(listContent &Data, listContent &temp, listContent &simpanremove, AdrC
     }
 
     if (Cursor_Left != nullptr) {
-        printBlock(Data,temp, Cursor_Left, Cursor);
+        printBlock(Data,temp, Cursor_Left, Cursor, namaFile);
     }else {
-        printBlock(Data,temp, Cursor, Cursor_Right);
+        printBlock(Data,temp, Cursor, Cursor_Right, namaFile);
     }
 
     while (true) {
@@ -662,40 +618,56 @@ void block(listContent &Data, listContent &temp, listContent &simpanremove, AdrC
                 }
             }
             if (ch == 16 && temp.First->next != nullptr) {
+                listContent P = duplicateList(temp);
                 if (Cursor_Left != nullptr) {
-                    removeBlock(Data, simpanremove, Cursor_Left, Cursor);
+                    removeBlock(Data, temp, Cursor_Left, Cursor);
                     Cursor = Cursor_Left;
+                    save("Replace", nullptr, Cursor, temp, U);
+                    AdrContent sementara = Cursor;
+                    temp = duplicateList(P);
                     pasteContent(Data, temp, Cursor);
-                    return;
+                    save("Replace", nullptr, sementara, temp, U);
                 }else {
-                    removeBlock(Data, simpanremove, Cursor, Cursor_Right);
+                    removeBlock(Data, temp, Cursor, Cursor_Right);
+                    save("Replace", nullptr, Cursor, temp, U);
+                    AdrContent sementara = Cursor;
+                    temp = duplicateList(P);
                     pasteContent(Data, temp, Cursor);
-                    return;
+                    save("Replace", nullptr, sementara, temp, U);
                 }
+                temp = P;
+                R.top = nullptr;
+                return;
             }else if (ch == 27) {
                 return;
             }else if (ch == '\b') {
                 if (Cursor_Left != nullptr) {
-                    removeBlock(Data, simpanremove, Cursor_Left, Cursor);
+                    removeBlock(Data, temp, Cursor_Left, Cursor);
                     Cursor = Cursor_Left;
-                    return;
                 }else {
-                    removeBlock(Data, simpanremove, Cursor, Cursor_Right);
-                    return;
+                    removeBlock(Data, temp, Cursor, Cursor_Right);
                 }
+                save("RemoveBlock", nullptr, Cursor, temp, U);
+                R.top = nullptr;
+                return;
             }
             if (Cursor_Left != nullptr) {
-                printBlock(Data, temp, Cursor_Left, Cursor);
+                printBlock(Data, temp, Cursor_Left, Cursor, namaFile);
             }else {
-                printBlock(Data, temp, Cursor, Cursor_Right);
+                printBlock(Data, temp, Cursor, Cursor_Right, namaFile);
             }
         }
     }
 }
 
 
-void printBlock(listContent Data, listContent copyan, AdrContent Cursor, AdrContent Batas) {
+void printBlock(listContent Data, listContent copyan, AdrContent Cursor, AdrContent Batas, string namaFile) {
     system("cls");
+    cout << "+--------------------------------------------------+" << endl;
+    cout << "|                Notepadd Laba-Laba Sunda          |" << endl;
+    cout << "+--------------------------------------------------+" << endl;
+    cout << namaFile << endl;
+    cout << "+--------------------------------------------------+" << endl;
     AdrContent temp = Data.First;
     AdrContent P = copyan.First->next;
     while (temp != nullptr)
@@ -752,31 +724,40 @@ void copyContent(listContent Data, listContent &temp, AdrContent Cursor, AdrCont
 }
 
 
-void pasteContent(listContent &Data, listContent temp, AdrContent &Cursor) {
-    // Inisialisasi
-    AdrContent P = temp.First->next;
-    AdrContent prevCursor = Cursor;
+void pasteContent(listContent &Data, listContent &temp, AdrContent &Cursor) {
+    // Duplikasi list temp agar node-node baru tidak terhubung ke temp asli
+    listContent tempCopy = temp;
 
-    // Iterasi elemen di temp dan tambahkan ke Data
+    // Sambungkan tempCopy ke Data
+    if (Cursor->next != nullptr) {
+        tempCopy.Last->next = Cursor->next;
+        Cursor->next->prev = tempCopy.Last;
+    } else {
+        Data.Last = tempCopy.Last;
+    }
+
+    tempCopy.First->next->prev = Cursor;
+    Cursor->next = tempCopy.First->next;
+
+    // Perbarui posisi Cursor ke elemen terakhir tempCopy
+    Cursor = tempCopy.Last;
+}
+
+
+listContent duplicateList(listContent Data) {
+    listContent temp = createListContent(); // Buat list baru dengan First yang pasti ada
+    AdrContent P = Data.First->next;        // Mulai dari elemen pertama (bukan node dummy)
+    AdrContent Q = temp.First;              // Mulai dari node dummy pada temp
+
     while (P != nullptr) {
-        AdrContent newNode = createAdrContent(P->info);
-        newNode->prev = prevCursor;
-        newNode->next = prevCursor->next;
-        prevCursor->next = newNode;
-
-        // Update prevCursor untuk elemen berikutnya
-        prevCursor = newNode;
-
-        // Iterasi ke elemen berikutnya di temp
-        P = P->next;
+        AdrContent newNode = createAdrContent(P->info); // Buat node baru dengan info dari P
+        newNode->prev = Q;            // Sambungkan node baru ke akhir list temp
+        Q->next = newNode;            // Sambungkan node sebelumnya (Q) ke node baru
+        Q = newNode;                  // Pindahkan Q ke node baru
+        P = P->next;                  // Pindah ke elemen berikutnya di Data
     }
 
-    // Periksa apakah elemen terakhir dari temp disambungkan ke akhir Data
-    if (Cursor->next == nullptr) {
-        Data.Last = prevCursor; // Jika Cursor awalnya berada di akhir Data
-    }
-
-    // Perbarui posisi Cursor ke elemen terakhir yang baru ditambahkan
-    Cursor = prevCursor;
+    temp.Last = Q; // Perbarui Last untuk menunjuk ke elemen terakhir
+    return temp;   // Kembalikan list duplikat
 }
 

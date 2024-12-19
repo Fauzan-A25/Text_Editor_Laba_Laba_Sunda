@@ -1,14 +1,14 @@
 #include "header.h"
 
-void editInput(listContent &Data, listContent &temp)
+void editInput(listContent &Data, listContent &temp, string namaFile)
 {
     Stack U = createStack();
     Stack R = createStack();
-    listContent simpanremove = createListContent();
     AdrContent cursor_pos = Data.Last;
+    namaFile = "   " + namaFile + "     Edit   ";
     char ch;
     system("cls");
-    printListContent(Data, cursor_pos);
+    printListContent(Data, cursor_pos, namaFile);
     while (true)
     {
         if (_kbhit())
@@ -67,20 +67,25 @@ void editInput(listContent &Data, listContent &temp)
             }
             else if (ch == 2) {
                 if (cursor_pos->next != nullptr || cursor_pos->prev != nullptr) {
-                    block(Data,temp, simpanremove, cursor_pos,U);
+                    block(Data,temp, cursor_pos,U,R, namaFile);
                 }
             }
             else if (ch == 16) {
+                R.top = nullptr;
+                listContent P = duplicateList(temp);
+                AdrContent sementaraCursor = cursor_pos;
                 pasteContent(Data, temp, cursor_pos);
+                save("AddBlock", nullptr, sementaraCursor, temp, U);
+                temp = P;
             }
             else
             {
                 R.top = nullptr;
                 AdrContent O = createAdrContent(ch);
                 addContent(Data, cursor_pos, O);
-                save("Add", O, cursor_pos, temp, U);
+                save("Add", O, cursor_pos, temp ,U);
             }
-            printListContent(Data, cursor_pos);
+            printListContent(Data, cursor_pos, namaFile);
         }
     }
 }
