@@ -14,11 +14,13 @@ Text Editor Laba-Laba Sunda adalah sebuah proyek aplikasi text editor berbasis t
 - Gunakan tombol navigasi untuk memindahkan kursor.
 - Gunakan pilihan menu untuk mengelola teks dan memilih file teks.
 - Tekan `ESC` untuk keluar dari aplikasi.
+- cara copy paste : `Ctrl + B` untuk mengblock teks, lalu `Ctrl + G` untuk copy, dan `Ctrl + P` untuk paste, dan untuk keluar dari mode block tekan `ESC`
 
 ## Struktur Proyek
 - **source.cpp**: Berisi implementasi utama dari aplikasi text editor.
 - **header.h**: File header untuk mendeklarasikan fungsi dan struktur yang digunakan.
 - **EditText.cpp**: File untuk menyimpan implementasi fungsi untuk edit text notepadd.
+- **main.cpp**: File untuk mengrunning program
 
 ## Kontribusi
 Code diatas dibuat untuk tugas besar Struktur data, yang dibuat oleh kelompok Laba Laba Sunda yag beranggotakan:
