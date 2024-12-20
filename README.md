@@ -20,9 +20,9 @@ Text Editor Laba-Laba Sunda adalah sebuah proyek aplikasi text editor berbasis t
 
 ## Struktur Proyek
 - **source.cpp**: Berisi implementasi utama dari aplikasi text editor.
-- **header.h**: File header untuk mendeklarasikan fungsi dan struktur yang digunakan.
-- **EditText.cpp**: File untuk menyimpan implementasi fungsi untuk edit text notepadd.
-- **main.cpp**: File untuk mengrunning program
+- **header.h**: File header untuk mendeklarasikan fungsi dan struktur data yang digunakan.
+- **InvutVariableText.cpp**: File untuk menyimpan implementasi fungsi untuk edit text notepadd.
+- **main.cpp**: File untuk mengrunning program.
 
 ## Kontribusi
 Code diatas dibuat untuk tugas besar Struktur data, yang dibuat oleh kelompok Laba Laba Sunda yag beranggotakan:
