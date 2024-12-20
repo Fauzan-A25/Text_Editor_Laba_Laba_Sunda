@@ -6,6 +6,8 @@ Text Editor Laba-Laba Sunda adalah sebuah proyek aplikasi text editor berbasis t
 - **Manajemen Blok Teks**: Tambah, hapus, dan modifikasi blok teks.
 - **Fitur Undo dan Redo**: Memungkinkan pengguna membatalkan atau mengulangi perubahan dengan mudah.
 - **Fitur Copy dan Paste**: Memungkinkan pengguna untuk mengcopy teks dan mempastenya
+- **Kustomisasi File**: Pengguna dapat membuat banyak file teks yang berbeda sesuai kebutuhan.
+- **Manajemen Data yang Efisien**: Memungkinkan pengguna untuk mengatur dan menyimpan data teks secara terorganisir.
 - **Navigasi Fleksibel**: Gerakkan kursor ke atas, bawah, kiri, atau kanan dengan kontrol keyboard.
 - **Blok Operasi Teks**: Dukungan untuk operasi copy-paste dan blok operasi teks.
 - **Antarmuka Berbasis Terminal**: Dirancang untuk berjalan di lingkungan CLI dengan interaksi yang sederhana.
