@@ -1,31 +1,61 @@
-# Text Editor Laba-Laba Sunda
+# 🕷️ Text Editor Laba-Laba Sunda
 
-Text Editor Laba-Laba Sunda adalah sebuah proyek aplikasi text editor berbasis terminal yang dikembangkan untuk menyediakan fitur pengelolaan teks yang interaktif. Aplikasi ini mendukung operasi dasar seperti menambahkan, menghapus, mengedit teks, serta fitur undo/redo yang lengkap dan meng copy paste.
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+![CLI](https://img.shields.io/badge/Terminal-000000?style=for-the-badge&logo=gnu-bash&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
 
-## Fitur Utama
-- **Manajemen Blok Teks**: Tambah, hapus, dan modifikasi blok teks.
-- **Fitur Undo dan Redo**: Memungkinkan pengguna membatalkan atau mengulangi perubahan dengan mudah.
-- **Fitur Copy dan Paste**: Memungkinkan pengguna untuk mengcopy teks dan mempastenya
-- **Kustomisasi File**: Pengguna dapat membuat banyak file teks yang berbeda sesuai kebutuhan.
-- **Manajemen Data yang Efisien**: Memungkinkan pengguna untuk mengatur dan menyimpan data teks secara terorganisir.
-- **Navigasi Fleksibel**: Gerakkan kursor ke atas, bawah, kiri, atau kanan dengan kontrol keyboard.
-- **Blok Operasi Teks**: Dukungan untuk operasi copy-paste dan blok operasi teks.
-- **Antarmuka Berbasis Terminal**: Dirancang untuk berjalan di lingkungan CLI dengan interaksi yang sederhana.
+**Text Editor Laba-Laba Sunda** adalah aplikasi **text editor berbasis terminal (CLI)** yang dirancang untuk memberikan pengalaman mengelola teks secara interaktif, cepat, dan efisien.  
+Proyek ini mendukung operasi dasar **tambah, hapus, dan edit teks**, hingga fitur canggih seperti **undo/redo** dan **copy-paste blok teks**.
 
-## Cara Penggunaan
-- Gunakan tombol navigasi untuk memindahkan kursor.
-- Gunakan pilihan menu untuk mengelola teks dan memilih file teks.
+---
+
+## ✨ Fitur Utama
+- **📝 Manajemen Blok Teks** — Tambahkan, hapus, dan modifikasi teks sesuai kebutuhan.
+- **⏪ Undo & 🔁 Redo** — Batalkan atau ulangi perubahan dengan mudah.
+- **📋 Copy & Paste** — Blok, salin, dan tempel teks dengan kombinasi tombol.
+- **📂 Multi-File Support** — Kelola banyak file teks dalam satu sesi.
+- **📊 Manajemen Data Efisien** — Simpan teks secara terorganisir dan rapi.
+- **🎯 Navigasi Fleksibel** — Gerakkan kursor ke atas, bawah, kiri, atau kanan.
+- **🔲 Blok Operasi Teks** — Operasi copy-paste berbasis blok.
+- **💻 CLI Interface** — Ringan, responsif, dan nyaman digunakan di terminal.
+
+---
+
+## 🎮 Cara Penggunaan
+- Gunakan tombol **navigasi** untuk memindahkan kursor.
+- Pilih menu untuk mengelola teks dan memilih file.
 - Tekan `ESC` untuk keluar dari aplikasi.
-- cara copy paste : `Ctrl + B` untuk mengblock teks, lalu `Ctrl + G` untuk copy, dan `Ctrl + P` untuk paste, dan untuk keluar dari mode block tekan `ESC`
 
-## Struktur Proyek
-- **source.cpp**: Berisi implementasi utama dari aplikasi text editor.
-- **header.h**: File header untuk mendeklarasikan fungsi dan struktur data yang digunakan.
-- **InvutVariableText.cpp**: File untuk menyimpan implementasi fungsi untuk edit text notepadd.
-- **main.cpp**: File untuk mengrunning program.
+**Copy-Paste Mode:**
+1. `Ctrl + B` → Blok teks  
+2. `Ctrl + G` → Copy  
+3. `Ctrl + P` → Paste  
+4. `ESC` → Keluar dari mode blok
 
-## Kontribusi
-Code diatas dibuat untuk tugas besar Struktur data, yang dibuat oleh kelompok Laba Laba Sunda yag beranggotakan:
-1. Fauzan Ahsanudin Alfikri
-2. Raya Ramadha Fitroh
-3. Rifki Arif Febrian
+---
+
+## 📂 Struktur Proyek
+```
+📦 LabaLabaSunda
+ ├── main.cpp                # Entry point program
+ ├── source.cpp              # Implementasi utama text editor
+ ├── header.h                # Deklarasi fungsi & struktur data
+ ├── InputVariableText.cpp   # Fungsi pengeditan teks (Notepad)
+```
+
+---
+
+## 🤝 Kontribusi
+Proyek ini merupakan **Tugas Besar Struktur Data** yang dibuat oleh **Kelompok Laba-Laba Sunda**:
+
+1. **Fauzan Ahsanudin Alfikri**  
+2. **Raya Ramadha Fitroh**  
+3. **Rifki Arif Febrian**  
+
+---
+
+## 📜 Lisensi
+Proyek ini dibuat untuk tujuan pembelajaran dan akademik.  
+Anda bebas memodifikasi dan mengembangkan lebih lanjut sesuai kebutuhan.
+
+---
